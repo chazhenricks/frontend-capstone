@@ -1,6 +1,11 @@
 "use strict";
 
 app.factory("AuthFactory", function($q, $http, $rootScope, FBCreds) {
+
+// **********
+// FIREBASE
+// **********
+
   let currentUserData = null;
   //Firebase: Register a new user with email and password
   let registerWithEmail = (user) => {
@@ -45,5 +50,22 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FBCreds) {
       });
     });
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return {isAuthenticated, getUser, logout, registerWithEmail, login};
 });

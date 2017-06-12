@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="">
+<html ng-app="ShowsAround">
 <head>
-    <title>Front End Capstone</title>
+    <title>Shows Around</title>
     <link rel="stylesheet" type="text/css" href="lib/node_modules/materialize-css/dist/css/materialize.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 
+
 <!-- NG VIEW -->
 <!-- This will display the dynamically changing html pages  -->
 <div ng-view></div>
+
+
 
 
 
@@ -18,31 +21,39 @@
 <!-- <toast></toast> -->
 
 
+
+
+
 <!-- ANGULAR -->
 <script src="lib/node_modules/angular/angular.js"></script>
 <script src="lib/node_modules/angular-route/angular-route.js"></script>
+<script src="lib/node_modules/angular-spotify/dist/angular-spotify.min.js"></script>
+<script src="lib/node_modules/angular-local-storage/dist/angular-local-storage.js"></script>
+
 
 <!-- FIREBASE -->
 <script type="text/javascript" src="lib/node_modules/firebase/firebase.js"></script>
 
 <!-- APP.JS -->
-<script src="app/app.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
 
 <!-- VALUES -->
-<script src="app/values/fb-creds.js"></script>
+<script type="text/javascript" src="app/values/fb-creds.js"></script>
 
 
 <!-- MATERIALIZE-CSS -->
-<script src="lib.node_modules/jquery/dist/jquery.js"></script>
-<script src="lib/node_modules/materialize-css/dist/js/materialize.js"></script>
+<script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="lib/node_modules/materialize-css/dist/js/materialize.js"></script>
 
 
 
 <!-- CONTROLLERS -->
-<script src="app/controllers/AuthCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/AuthCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ShowsListCtrl.js"></script>
 
 <!-- FACTORIES -->
-<script src="app/factories/AuthFactories.js"></script>
+<script type="text/javascript" src="app/factories/AuthFactory.js"></script>
+<script type="text/javascript" src="app/factories/DataFactory.js"></script>
 
 <!-- FILTERS -->
 

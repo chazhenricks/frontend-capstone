@@ -2,7 +2,7 @@
 
 //login, logout, register
 
-app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, DataFactory){
+app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, DataFactory, Spotify){
     $scope.auth = {
       email: "",
       password: "",
@@ -53,5 +53,36 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
       $scope.$apply();
       $window.location.href = "#!/explore";
     });
-};
+  };
+
+  $scope.spotifyLogin = ()=>{
+    Spotify.login()
+    .then((result)=>{
+      $scope.authToken = result;
+      $location.url('/showslist');
+    });
+  };
+
+
+  $scope.getAuthToken = ()=>{
+    return $scope.authToken;
+  };
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
