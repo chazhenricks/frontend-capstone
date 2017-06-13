@@ -3,18 +3,7 @@
 app.factory("DataFactory", function($q, $http, $window, FBCreds, BITCreds){
 
 
-const addUser = function(newUser){
-   return $q((resolve, reject)=>{
-     console.log("adding new user to our database");
-       $http.post(`${FBCreds.databaseURL}/users.json`, newUser)
-       .then((response)=>{
-           resolve(response);
-       })
-       .catch((error)=>{
-           reject(error);
-       });
-   });
-};
+
 
 const getShows = function(artist){
     artist.name = artist.name.replace(/\s/g, '%20');
@@ -43,11 +32,23 @@ const getShows = function(artist){
     });
 };
 
+const addToTracked = function(show){
+  return $q((resolve,reject)=>{
+    $http.post(`${FBCreds.databaseURL}/shows.json`, show)
+    .then((response)=>{
+      resolve(response);
+    })
+    .catch((error)=>{
+      reject(error);
+    });
+  });
+};
+
 
 
 return{
-    addUser,
-    getShows
+    getShows,
+    addToTracked
     };
 
 });

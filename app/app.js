@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("ShowsAround", ["ngRoute", "LocalStorageModule", "spotify"]);
+var app = angular.module("ShowsAround", ["ngRoute", "LocalStorageModule", "spotify", "ui.materialize"]);
 
 
 app.run(function($rootScope, $location, FBCreds, AuthFactory) {
@@ -20,6 +20,10 @@ app.config(function($routeProvider) {
 
   $routeProvider
     .when('/', {
+      templateUrl: 'partials/firebaselogin.html',
+      controller: 'AuthCtrl'
+    })
+    .when('/spotify', {
       templateUrl: 'partials/spotifylogin.html',
       controller: 'AuthCtrl'
     })

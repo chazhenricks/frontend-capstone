@@ -8,4 +8,5 @@ app.constant("FBCreds", {
     storageBucket: "frontend-capstone-3dd06.appspot.com",
     messagingSenderId: "239477651095"
 
+
 });
