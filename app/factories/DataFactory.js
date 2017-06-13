@@ -32,6 +32,18 @@ const getShows = function(artist){
     });
 };
 
+const removeShow = function(showId){
+  return $q((resolve, reject)=>{
+    $http.delete(`${FBCreds.databaseURL}/shows/${showId}.json`)
+    .then((response)=>{
+      resolve(response);
+    })
+    .catch((error)=>{
+      reject(error);
+    });
+  });
+};
+
 const addToTracked = function(show){
   return $q((resolve,reject)=>{
     $http.post(`${FBCreds.databaseURL}/shows.json`, show)
@@ -45,10 +57,31 @@ const addToTracked = function(show){
 };
 
 
+const getTrackedShows = function(uid){
+  return $q((resolve, reject)=>{
+    $http.get(`${FBCreds.databaseURL}/shows.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response)=>{
+      var showsArray = [];
+      var listOfShows = response.data;
+      Object.keys(listOfShows).forEach((key)=>{
+          listOfShows[key].id = key;
+          showsArray.push(listOfShows[key]);
+        });
+      resolve(showsArray);
+    })
+    .catch((error)=>{
+      reject(error);
+    });
+  });
+};
+
+
 
 return{
     getShows,
-    addToTracked
+    addToTracked,
+    getTrackedShows,
+    removeShow
     };
 
 });

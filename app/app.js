@@ -31,6 +31,10 @@ app.config(function($routeProvider) {
        templateUrl: 'partials/shows-list.html',
        controller: "ShowsListCtrl"
     })
+    .when('/trackedshows', {
+       templateUrl: 'partials/trackedshows.html',
+       controller: "TrackedShowsCtrl"
+    })
     .otherwise('/');
 
 
