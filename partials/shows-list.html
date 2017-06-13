@@ -2,12 +2,15 @@
 <button ng-click="logOutSpotify()">Log Out Spotify</button>
 
 <div ng-repeat="shows in localShows">
+    <img src="{{shows.picture}}">
     <p> Artist: {{shows.name}}</p>
     <p>City: {{shows.city}}</p>
     <p>State: {{shows.state}}</p>
-    <img src="{{shows.picture}}">
+    <p>Date: {{shows.date}}</p>
+    <p>Time: {{shows.time}}</p>
     <p><a href="{{shows.tickets}}">Tickets</a></p>
-    <p>Venue: <a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">{{shows.venue}}</a></p>
+    <p>Venue: {{shows.venue}} </p>
+    <p><a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
 
 </div>
 

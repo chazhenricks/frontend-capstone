@@ -24,6 +24,7 @@ const getShows = function(artist){
             var showsArray = response.data;
             showsArray.forEach((show)=>{
                 if(show.venue.city === "Nashville"){
+                    artist.datetime = show.datetime;
                     artist.city = show.venue.city;
                     artist.state = show.venue.region;
                     artist.venue = show.venue.name;

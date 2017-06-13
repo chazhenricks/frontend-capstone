@@ -3,13 +3,82 @@
 app.controller("ShowsListCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService){
 
 
-
+//Gets back the array of shows that match the specified city and parses the data into an object we can use to populate the page.
 let getArtistsShows = function(artists){
     $scope.localShows = [];
     artists.forEach((item)=>{
     DataFactory.getShows(item)
         .then((response)=>{
+            var mm = response.datetime.slice(5,7);
+            //converts month numbers to words
+            switch(mm){
+                case "01":
+                mm = "January";
+                break;
+                 case "02":
+                mm = "February";
+                break;
+
+                 case "03":
+                mm = "March";
+                break;
+
+                 case "04":
+                mm = "April";
+                break;
+
+                 case "05":
+                mm = "May";
+                break;
+
+                 case "06":
+                mm = "June";
+                break;
+
+                 case "07":
+                mm = "July";
+                break;
+
+                 case "08":
+                mm = "August";
+                break;
+
+                 case "09":
+                mm = "September";
+                break;
+
+                 case "10":
+                mm = "October";
+                break;
+
+                 case "11":
+                mm = "November";
+                break;
+
+                 case "12":
+                mm = "December";
+                break;
+            }
+
+            var dd = response.datetime.slice(8,10);
+            var yy = response.datetime.slice(0,4);
+            var date = `${mm} ${dd}, ${yy}`;
+
+            //Converts 24hr time to 12hr time
+            var hr = response.datetime.slice(11, 13);
+            var min = response.datetime.slice(14,16);
+            var time = "";
+            if(hr > 12){
+                hr = hr - 12;
+                time = `${hr}:${min} PM`;
+            }else if(hr < 13){
+                time = `${hr}:${min} AM`;
+            }
+
+            //removes %20 needed to represent spaces in the URL call for display purposes
             response.name = response.name.replace(/%20/g, ' ');
+            response.date = date;
+            response.time = time;
 
             $scope.localShows.push(response);
         },(error)=>{
@@ -26,14 +95,17 @@ let getArtistsShows = function(artists){
     // long_term: few years
 
 let getTopArtists = ()=>{
-    Spotify.getUserTopArtists({ limit: 50, time_range: "medium_term" })
+    Spotify.getUserTopArtists({ limit: 50, time_range: "long_term"})
     .then(function (data) {
         var artists = [];
         var arrayFromSpotify = data.data.items;
+        console.log(arrayFromSpotify);
         arrayFromSpotify.forEach(function(item){
             var artistData = {};
             artistData.name = item.name;
-            artistData.picture = item.images[0].url;
+            if(item.images[0]){
+                artistData.picture = item.images[0].url;
+            }
             artists.push(artistData);
         });
         getArtistsShows(artists);
