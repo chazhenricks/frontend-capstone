@@ -112,6 +112,28 @@ let getTopArtists = ()=>{
     });
 };
 
+
+
+$scope.addToTracked = function(show){
+    show.uid = AuthFactory.getUser();
+    console.log(show);
+    console.log(AuthFactory.getUser());
+     DataFactory.addToTracked(show)
+     .then((response)=>{
+        console.log(response);
+     },
+     (error)=>{
+        console.log(error);
+     });
+};
+
+
+
+
+
+
+
+
 getTopArtists();
 
 
