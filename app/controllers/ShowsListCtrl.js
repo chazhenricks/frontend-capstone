@@ -1,13 +1,15 @@
 "use strict";
 
-app.controller("ShowsListCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService){
+app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService){
 
+
+    let city = LocationFactory.getCurrentCity();
 
 //Gets back the array of shows that match the specified city and parses the data into an object we can use to populate the page.
 let getArtistsShows = function(artists){
     $scope.localShows = [];
     artists.forEach((item)=>{
-    DataFactory.getShows(item)
+    DataFactory.getShows(item, city)
         .then((response)=>{
             var mm = response.datetime.slice(5,7);
             //converts month numbers to words
@@ -82,7 +84,7 @@ let getArtistsShows = function(artists){
 
             $scope.localShows.push(response);
         },(error)=>{
-            console.log(error);
+            console.error(error);
         });
     });
         console.log("localShows",$scope.localShows);

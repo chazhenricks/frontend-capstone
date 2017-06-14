@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
       templateUrl: 'partials/firebaselogin.html',
       controller: 'AuthCtrl'
     })
+    .when('/setlocation', {
+      templateUrl: 'partials/setlocation.html',
+      controller: 'NavCtrl'
+    })
     .when('/spotify', {
       templateUrl: 'partials/spotifylogin.html',
       controller: 'AuthCtrl'

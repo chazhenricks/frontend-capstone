@@ -1,17 +1,29 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, AuthFactory, DataFactory, LocationFactory, $timeout){
+app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout){
 
-    $scope.getZipCodeLocation = function(){
-
+    $scope.newLocation = {
+        zip:""
     };
 
+    $scope.getZipCodeLocation = function(){
+        LocationFactory.getCityByZip($scope.newLocation.zip)
+        .then(()=>{
+            $location.url('/showslist');
+        });
+    };
+
+    $scope.showLocation = function(){
+        console.log("Show Location", LocationFactory.getCurrentCity());
+    };
+
+
     $scope.getCurrentLocation = function(){
-        var currentLocation = LocationFactory.getCoords();
+        $scope.currentLocation = LocationFactory.getCoords();
         $timeout(()=>{
-            LocationFactory.getCityByCoords(currentLocation.lat, currentLocation.long)
-            .then((response)=>{
-                console.log(response.data.results[0].address_components[3].long_name);
+            LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long)
+            .then(()=>{
+                $location.url('/showslist');
             });
         }, 5000);
     };
