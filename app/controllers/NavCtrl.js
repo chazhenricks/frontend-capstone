@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout){
+app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $routeParams){
 
     $scope.newLocation = {
         zip:""

@@ -5,7 +5,23 @@
 
             <p>-OR-</p>
 
-            <button ng-click="getCurrentLocation()" class=" center btn waves-effect waves-light red">Use Current Location</button>
+            <button ng-click="getCurrentLocation()" data-target="loadingModal" class=" center btn waves-effect waves-light red" modal>Use Current Location</button>
 
   </div>
+
+
+<div id="loadingModal" class="modal">
+      <div class="modal-content">
+          <h4>Register New User</h4>
+          <input type="text" autofocus="true" placeholder="First Name" ng-model="auth.firstName">
+          <input type="text" autofocus="true" placeholder="Last Name" ng-model="auth.lastName">
+          <input type="email" autofocus="true" placeholder="Email" ng-model="auth.email">
+          <input type="password" autofocus="true" placeholder="Password" ng-model="auth.password">
+          <button ng-click="registerUser()" class="btn waves-effect waves-light red">Register</button>
+      </div>
+      <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
+  </div>
+
 
