@@ -15,18 +15,8 @@ app.factory("LocationFactory", function($timeout, $q, $http){
             return coords;
     };
 
-    let getCityByZip = function(zip){
-        return $q((resolve, reject)=>{
-            $http.get(`http://maps.googleapis.com/maps/api/geocode/json?address=${zip}&sensor=true`)
-            .then((response)=>{
-            currentCity = (response.data.results[0].address_components[1].long_name);
-            console.log("Current City", currentCity);
-            resolve(response);
-            })
-            .catch((error)=>{
-                reject(error);
-            });
-        });
+    let newCity = function(city){
+        currentCity = city;
     };
 
     let getCityByCoords = function(lat, long){
@@ -48,6 +38,6 @@ app.factory("LocationFactory", function($timeout, $q, $http){
     };
 
 
-return {getCoords, getCityByCoords, getCurrentCity, getCityByZip};
+return {getCoords, getCityByCoords, getCurrentCity, newCity};
 
 });
