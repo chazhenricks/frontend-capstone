@@ -1,43 +1,49 @@
 "use strict";
 
-app.factory("LocationFactory", function($timeout, $q, $http){
+app.factory("LocationFactory", function($timeout, $q, $http) {
 
-        var coords = {};
-        var currentCity = "";
+    // sets empty variables to store location info
+    var coords = {};
+    var currentCity = "";
 
-    let getCoords = function(){
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    coords.lat = position.coords.latitude;
-                    coords.long = position.coords.longitude;
-                });
-            }
-            return coords;
+    // uses javascript location methods to get coordinates of users current location
+    // *NOTE* can only be used on localhost or site with https. If hosted on site only using http this will not fucntion
+    let getCoords = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                coords.lat = position.coords.latitude;
+                coords.long = position.coords.longitude;
+            });
+        }
+        return coords;
     };
 
-    let newCity = function(city){
+    // sets current city to city that user has input
+    let newCity = function(city) {
         currentCity = city;
     };
 
-    let getCityByCoords = function(lat, long){
-        return $q((resolve, reject)=>{
+    // runs the lat/long coordinates into the google maps api and filters out city name
+    let getCityByCoords = function(lat, long) {
+        return $q((resolve, reject) => {
             $http.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
-            .then((response)=>{
-            currentCity=(response.data.results[0].address_components[3].long_name);
-            console.log("current city", currentCity);
-            resolve(currentCity);
+            .then((response) => {
+                currentCity = (response.data.results[0].address_components[3].long_name);
+                console.log("current city", currentCity);
+                resolve(currentCity);
             })
-            .catch((error)=>{
+            .catch((error) => {
                 reject(error);
             });
         });
     };
 
-    let getCurrentCity = function(){
+    // returns current city
+    let getCurrentCity = function() {
         return currentCity;
     };
 
 
-return {getCoords, getCityByCoords, getCurrentCity, newCity};
+    return { getCoords, getCityByCoords, getCurrentCity, newCity };
 
 });
