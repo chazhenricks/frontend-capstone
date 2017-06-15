@@ -24,6 +24,7 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
         LocationFactory.newCity($scope.newLocation.city);
         $("#locationModal").modal('close');
         $location.url('/showslist');
+        $scope.newLocation.city = "";
     };
 
     $scope.reloadPage = function(){
@@ -40,7 +41,9 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
         $timeout(()=>{
             LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long)
             .then(()=>{
+                $("#locationModal").modal('close');
                 $location.url('/showslist');
+                $route.reload();
             });
         }, 5000);
     };
