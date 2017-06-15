@@ -8,6 +8,22 @@ app.run(function($rootScope, $location, FBCreds, AuthFactory) {
 });
 
 
+//Will determine if a user is logged in or not. If not will redirect them back to the home page to log in
+let isAuth = (AuthFactory) =>
+  new Promise ((resolve, reject) => {
+    AuthFactory.isAuthenticated()
+    .then((userExists) => {
+      if (userExists){
+        console.log('Authenicated, go ahead');
+        resolve();
+      } else {
+        console.log('Authenticated reject, GO AWAY');
+        reject();
+      }
+    });
+});
+
+
 app.config(function($routeProvider) {
     // ********
     // ngRoute
@@ -25,19 +41,23 @@ app.config(function($routeProvider) {
         })
         .when('/setlocation', {
             templateUrl: 'partials/setlocation.html',
-            controller: 'NavCtrl'
+            controller: 'NavCtrl',
+            resolve: {isAuth}
         })
         .when('/spotify', {
             templateUrl: 'partials/spotifylogin.html',
-            controller: 'AuthCtrl'
+            controller: 'AuthCtrl',
+            resolve: {isAuth}
         })
         .when('/showslist', {
             templateUrl: 'partials/shows-list.html',
-            controller: "ShowsListCtrl"
+            controller: "ShowsListCtrl",
+            resolve: {isAuth}
         })
         .when('/trackedshows', {
             templateUrl: 'partials/trackedshows.html',
-            controller: "TrackedShowsCtrl"
+            controller: "TrackedShowsCtrl",
+            resolve: {isAuth}
         })
         .otherwise('/');
 

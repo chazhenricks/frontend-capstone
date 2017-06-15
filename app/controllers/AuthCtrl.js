@@ -25,9 +25,9 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     };
 
     // when first loaded, make sure no one is logged in
-    if (AuthFactory.isAuthenticated()) {
-        logout();
-    }
+    // if (AuthFactory.isAuthenticated()) {
+    //     logout();
+    // }
 
     // adding a new user to firebase
     $scope.registerUser = function() {
@@ -52,10 +52,10 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
 
     // firebase login which redirects to spotify login page
     $scope.login = function() {
-        $location.url('/spotify');
         AuthFactory.login($scope.auth)
             .then(() => {
                 $scope.$apply();
+                $location.url('/spotify');
             });
     };
 
