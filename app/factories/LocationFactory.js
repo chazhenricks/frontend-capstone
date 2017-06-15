@@ -10,12 +10,15 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     // *NOTE* can only be used on localhost or site with https. If hosted on site only using http this will not fucntion
     let getCoords = function() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                coords.lat = position.coords.latitude;
-                coords.long = position.coords.longitude;
+            return new Promise((resolve,reject)=>{
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    coords.lat = position.coords.latitude;
+                    coords.long = position.coords.longitude;
+                    resolve(coords);
+                });
             });
         }
-        return coords;
+
     };
 
     // sets current city to city that user has input
