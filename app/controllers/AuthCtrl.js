@@ -59,7 +59,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     Spotify.login()
     .then((result)=>{
       $scope.authToken = result;
-      $location.url('/showslist');
+      $location.url('/setlocation');
     });
   };
 

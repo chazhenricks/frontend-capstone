@@ -1,18 +1,19 @@
 "use strict";
 
-app.factory("DataFactory", function($q, $http, $window, FBCreds, BITCreds){
+app.factory("DataFactory", function($q, $http, $window, FBCreds, BITCreds, LocationFactory){
 
 
 
 
-const getShows = function(artist){
+const getShows = function(artist, city){
+  console.log("Current City", city);
     artist.name = artist.name.replace(/\s/g, '%20');
     return $q((resolve, reject)=>{
         $http.get(`${BITCreds.databaseURL}/artists/${artist.name}/events?app_id=shows_around`)
         .then((response)=>{
             var showsArray = response.data;
             showsArray.forEach((show)=>{
-                if(show.venue.city === "Nashville"){
+                if(show.venue.city === city){
                     artist.datetime = show.datetime;
                     artist.city = show.venue.city;
                     artist.state = show.venue.region;
