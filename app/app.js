@@ -2,9 +2,9 @@
 
 var app = angular.module("ShowsAround", ["ngRoute", "LocalStorageModule", "spotify", "ui.materialize"]);
 
-
+//initializes firebase
 app.run(function($rootScope, $location, FBCreds, AuthFactory) {
-  firebase.initializeApp(FBCreds);
+    firebase.initializeApp(FBCreds);
 });
 
 
@@ -18,28 +18,28 @@ app.config(function($routeProvider) {
     // these will be display in the <div ng-view></div> on the index.html.
 
 
-  $routeProvider
-    .when('/', {
-      templateUrl: 'partials/firebaselogin.html',
-      controller: 'AuthCtrl'
-    })
-    .when('/setlocation', {
-      templateUrl: 'partials/setlocation.html',
-      controller: 'NavCtrl'
-    })
-    .when('/spotify', {
-      templateUrl: 'partials/spotifylogin.html',
-      controller: 'AuthCtrl'
-    })
-    .when('/showslist', {
-       templateUrl: 'partials/shows-list.html',
-       controller: "ShowsListCtrl"
-    })
-    .when('/trackedshows', {
-       templateUrl: 'partials/trackedshows.html',
-       controller: "TrackedShowsCtrl"
-    })
-    .otherwise('/');
+    $routeProvider
+        .when('/', {
+            templateUrl: 'partials/firebaselogin.html',
+            controller: 'AuthCtrl'
+        })
+        .when('/setlocation', {
+            templateUrl: 'partials/setlocation.html',
+            controller: 'NavCtrl'
+        })
+        .when('/spotify', {
+            templateUrl: 'partials/spotifylogin.html',
+            controller: 'AuthCtrl'
+        })
+        .when('/showslist', {
+            templateUrl: 'partials/shows-list.html',
+            controller: "ShowsListCtrl"
+        })
+        .when('/trackedshows', {
+            templateUrl: 'partials/trackedshows.html',
+            controller: "TrackedShowsCtrl"
+        })
+        .otherwise('/');
 
 
 });
@@ -47,31 +47,13 @@ app.config(function($routeProvider) {
 
 
 
-    // *******
-    // SPOTIFY
-    // *******
+// *******
+// SPOTIFY
+// *******
 
-    // angular-spotify is an angularjs plugin that helps deal with iteracting with the spotify API. More info can be found at https://github.com/eddiemoore/angular-spotify#usage
-app.config(function (SpotifyProvider) {
-    SpotifyProvider.setClientId('56e27aa1be0549c8a604ea4e23594fd1');
-    SpotifyProvider.setRedirectUri('http://localhost:8080/login.html');
-    SpotifyProvider.setScope('user-library-read user-top-read');
+// angular-spotify is an angularjs plugin that helps deal with iteracting with the spotify API. More info can be found at https://github.com/eddiemoore/angular-spotify#usage
+app.config(function(SpotifyProvider, SpotifyCreds) {
+    SpotifyProvider.setClientId(`${SpotifyCreds.ClientId}`);
+    SpotifyProvider.setRedirectUri(`${SpotifyCreds.RedirectUri}`);
+    SpotifyProvider.setScope(`${SpotifyCreds.Scope}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

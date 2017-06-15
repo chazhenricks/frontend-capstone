@@ -1,52 +1,27 @@
-
-
 <div ng-repeat="shows in localShows">
-  <div class="row center">
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{shows.picture}}">
-          <span class="card-title">{{shows.name}}</span>
-          <button  ng-click="addToTracked(shows)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>
-        </div> <!-- end card image -->
-        <div class="card-content">
-            <p>Date: {{shows.date}}</p>
-            <p>Time: {{shows.time}}</p>
-            <p><a href="{{shows.tickets}}">Tickets</a></p>
-            <p> {{shows.venue}} </p>
-            <p><a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
-        </div> <!-- end card content -->
-      </div> <!-- end card -->
-    </div> <!-- end col -->
-  </div> <!-- end row center -->
-</div> <!-- end ng-repeat -->
-
-
-
-
-
-
-
-<!--
-    <img src="{{shows.picture}}">
-    <p> Artist: {{shows.name}}</p>
-    <p>City: {{shows.city}}</p>
-    <p>State: {{shows.state}}</p>
-    <p>Date: {{shows.date}}</p>
-    <p>Time: {{shows.time}}</p>
-    <p><a href="{{shows.tickets}}">Tickets</a></p>
-    <p>Venue: {{shows.venue}} </p>
-    <p><a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
- -->
-
-
-
-
-
-
-
-
-
-
-
+    <div class="row center">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{shows.picture}}">
+                    <span class="card-title">{{shows.name}}</span>
+                    <button ng-click="addToTracked(shows)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>
+                </div>
+                <!-- end card image -->
+                <div class="card-content">
+                    <p>Date: {{shows.date}}</p>
+                    <p>Time: {{shows.time}}</p>
+                    <p><a href="{{shows.tickets}}">Tickets</a></p>
+                    <p> {{shows.venue}} </p>
+                    <p><a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
+                </div>
+                <!-- end card content -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row center -->
+</div>
+<!-- end ng-repeat -->
 

@@ -1,27 +1,30 @@
 "use strict";
 
-app.controller("TrackedShowsCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService){
+app.controller("TrackedShowsCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService) {
 
+    // sets up a blank array to keep track of the shows in a users profile
     $scope.localShows = [];
 
-    $scope.getTrackedShows = function(){
-        console.log("HAY");
+
+    //gets a list of users tracked shows from firebase and adds them to the local shows array
+    $scope.getTrackedShows = function() {
         var user = AuthFactory.getUser();
         DataFactory.getTrackedShows(user)
-        .then((response)=>{
-            $scope.localShows = response;
-        });
+            .then((response) => {
+                $scope.localShows = response;
+            });
     };
 
-
-    $scope.removeShow = function(showId){
+    // runs the remove show function with the specific show id
+    $scope.removeShow = function(showId) {
         DataFactory.removeShow(showId)
-        .then((response)=>{
-            console.log(response);
-            $scope.getTrackedShows();
-        });
+            .then((response) => {
+                console.log(response);
+                $scope.getTrackedShows();
+            });
     };
 
-$scope.getTrackedShows();
+    // on partial load will run the getTrackedShows function
+    $scope.getTrackedShows();
 
 });
