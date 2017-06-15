@@ -14,20 +14,48 @@
 
 
 
-    <!-- MODAL -->
+    <!-- LOCATION MODAL -->
     <div id="locationModal" class="modal center">
         <div class="modal-content">
             <h4>Choose Your Location</h4>
             <input type="text" autofocus="true" placeholder="City Name" ng-model="newLocation.city">
             <button ng-click="newCity(); reloadPage()" class="center btn waves-effect waves-light blue">Enter City</button>
             <p>-OR-</p>
-            <button ng-click="getCurrentLocation()" data-target="loadingModal" class=" center btn waves-effect waves-light red" modal>Use Current Location</button>
+            <button ng-click="getCurrentLocation()" data-target="loadingModal" class="center btn waves-effect waves-light red modal-close" modal>Use Current Location</button>
         </div>
         <!-- end modal-content -->
         <div class="modal-footer">
             <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
         </div>
     </div>
-    <!-- END MODAL -->
+    <!-- END LOCATION MODAL -->
+
+<!-- LOADING MODAL -->
+<div id="loadingModal" class="modal">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-image">
+              <img class="flip" src="images/van.gif">
+              <p class="card-title center">Arriving At Your City</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END LOADING MODAL -->
+
 
 </div><!-- End ng-controller -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

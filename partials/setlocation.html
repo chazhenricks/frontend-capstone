@@ -3,22 +3,19 @@
     <input type="text" autofocus="true" placeholder="City Name" ng-model="newLocation.city">
     <button ng-click="newCity()" class="center btn waves-effect waves-light blue">Enter City</button>
     <p>-OR-</p>
-    <button ng-click="getCurrentLocation()" class=" center btn waves-effect waves-light red" modal>Use Current Location</button>
+    <button ng-click="getCurrentLocation()" data-target="loadingModal" class=" center btn waves-effect waves-light red" modal>Use Current Location</button>
 </div>
 
 
-<!-- MODAL -->
+<!-- LOADING MODAL -->
 <div id="loadingModal" class="modal">
     <div class="modal-content">
-        <h4>Register New User</h4>
-        <input type="text" autofocus="true" placeholder="First Name" ng-model="auth.firstName">
-        <input type="text" autofocus="true" placeholder="Last Name" ng-model="auth.lastName">
-        <input type="email" autofocus="true" placeholder="Email" ng-model="auth.email">
-        <input type="password" autofocus="true" placeholder="Password" ng-model="auth.password">
-        <button ng-click="registerUser()" class="btn waves-effect waves-light red">Register</button>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <div class="card">
+            <div class="card-image">
+              <img class="flip" src="images/van.gif">
+              <p class="card-title center">Arriving At Your City</p>
+            </div>
+        </div>
     </div>
 </div>
-<!-- END MODAL -->
+<!-- END LOADING MODAL -->

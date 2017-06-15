@@ -41,15 +41,19 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
 
     // triggers the LocationFactory to get the current city - since it is a javascript method and not a promise, need to use a timeout to make sure the browser has had enough time to gather the info before sending it to the getCityByCoords function
     $scope.getCurrentLocation = function() {
-        $scope.currentLocation = LocationFactory.getCoords();
-        $timeout(() => {
-            LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long)
-                .then(() => {
-                    $("#locationModal").modal('close');
-                    $location.url('/showslist');
-                    $route.reload();
-                });
-        }, 5000);
+        LocationFactory.getCoords()
+        .then((coords) => {
+            $scope.currentLocation = coords;
+            return LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long);
+            },
+            () => {
+                console.error("ERROR GETTING COORDINATES");
+            })
+        .then(() => {
+            $("#loadingModal").modal('close');
+            $location.url('/showslist');
+            $route.reload();
+        });
     };
 
 });
