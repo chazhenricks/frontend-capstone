@@ -22,6 +22,18 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
         }
     });
 
+     // logout firebase
+    $scope.logout = () => {
+        console.log("NO ONE IS LOGGED IN");
+        AuthFactory.logout()
+            .then(function(data) {
+                $location.path("#!/");
+                console.log(AuthFactory.getUser());
+            }, function(error) {
+                console.log("error occured on logout");
+            });
+    };
+
     // if user enters new city this will change the city to search by in the Location Factory
     $scope.newCity = function() {
         LocationFactory.newCity($scope.newLocation.city);

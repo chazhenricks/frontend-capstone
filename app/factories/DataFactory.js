@@ -18,7 +18,9 @@ app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory
                             artist.city = show.venue.city;
                             artist.state = show.venue.region;
                             artist.venue = show.venue.name;
+                            if(show.offers[0]){
                             artist.tickets = show.offers[0].url;
+                            }
                             artist.lat = show.venue.latitude;
                             artist.long = show.venue.longitude;
                             resolve(artist);
