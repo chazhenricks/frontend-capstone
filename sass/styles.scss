@@ -5,3 +5,25 @@ $spotify-color: #1ED760;
 .spotify{
     background-color: $spotify-color;
 }
+
+.card-image{
+    max-height: 500px;
+    overflow: hidden;
+}
+
+// .add-btn{
+//     position: relative;
+//     left: 90%;
+// }
+
+.show-title{
+    display: block;
+    background-color: #424242;
+    opacity: 0.9;
+
+}
+
+
+.btn-floating{
+    z-index: 1000 !important;
+}

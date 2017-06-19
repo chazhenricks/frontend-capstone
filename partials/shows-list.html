@@ -1,11 +1,12 @@
-<div ng-repeat="shows in localShows| orderBy: 'monthNum'">
-    <div class="row center">
+
+<div class="row">
+    <div ng-repeat="shows in localShows">
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-image">
                     <img src="{{shows.picture}}">
                     <span class="card-title">{{shows.name}}</span>
-                    <button ng-click="addToTracked(shows)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i>Track This Show</button>
+                    <button ng-click="addToTracked(shows)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></button>
                 </div>
                 <!-- end card image -->
                 <div class="card-content">
@@ -24,4 +25,3 @@
     <!-- end row center -->
 </div>
 <!-- end ng-repeat -->
-
