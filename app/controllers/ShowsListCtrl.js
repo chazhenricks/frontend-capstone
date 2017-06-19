@@ -1,6 +1,9 @@
 "use strict";
 
-app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService) {
+app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService, $SearchTermData) {
+
+
+    $scope.searchText = SearchTermData;
 
     //Grabs either current location or user inout city from LocationFactory
     let city = LocationFactory.getCurrentCity();

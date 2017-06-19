@@ -15,10 +15,10 @@
                 <div class="card-content">
                     <p class="show-title">{{shows.name}}</p>
                     <div class="links">
-                        <p class="show-tickets center"><a href="{{shows.tickets}}">Tickets</a></p>
-                        <p class="show-directions center"><a href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
+                        <p class="show-tickets center"><a class="waves-effect waves-transparent btn-flat" href="{{shows.tickets}}">Tickets</a></p>
+                        <p class="show-directions center"><a class="waves-effect waves-transparent btn-flat" href="https://www.google.com/maps/dir/Current+Location/{{shows.lat}},{{shows.long}}">Directions</a></p>
                     </div>
-                    <p  ng-click="addToTracked(shows)" class="add-btn"><a href="">Add To Tracked </a></p>
+                    <a class="waves-effect waves-transparent btn-flat add-btn center-align" ng-click="addToTracked(shows)" >Add To Tracked </a>
                 </div>
                 <!-- end card content -->
             </div>

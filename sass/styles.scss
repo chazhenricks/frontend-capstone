@@ -8,6 +8,47 @@ $not-white: #fafafa;
     background-color: $spotify-color;
 }
 
+/***************
+NAV BAR
+***************/
+
+.shows-navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.show-nav-links{
+    display: flex;
+    li{
+        padding: 1em 2em;
+        a{
+            text-decoration: none;
+            font-size: 1.25em;
+            color: white;
+        }
+    }
+}
+.logo{
+    padding: 1em 2em;
+    font-size: 2em;
+    color: white;
+}
+
+.input-field{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+#artist-search{
+    width: 500px;
+    color: white;
+}
+
+/*****************
+MEDIA QUERIES
+******************/
 
 @media screen
   and (min-device-width: 1200px)
@@ -40,7 +81,9 @@ $not-white: #fafafa;
     }
 }
 
-
+/*****************
+CARD FORMATING
+******************/
 
 .artist-image{
     position: absolute;
@@ -100,47 +143,29 @@ $not-white: #fafafa;
     margin-bottom: 10px;
 }
 
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .links{
-    margin-top: 2em;
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-around;
     a {
         text-decoration: none;
         color: $dark-grey;
-        font-size: 1.5em;
+        font-size: 1.25em;
         font-weight: 100;
     }
 }
 
-.links{
-    display: flex;
-    justify-content: space-around;
-}
 .add-btn{
     text-decoration: none;
     color: $dark-grey;
-    text-align: center;
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 100;
-    margin-top: 50px;
+    margin-top: 0.75em;
 }
-
-// .card-image{
-//     max-height: 500px;
-//     overflow: hidden;
-// }
-
-// .add-btn{
-//     position: relative;
-//     left: 90%;
-// }
-
-// .show-title{
-//     display: block;
-//     background-color: #424242;
-//     opacity: 0.9;
-
-// }
-
-
-// .btn-floating{
-//     z-index: 1000 !important;
-// }
