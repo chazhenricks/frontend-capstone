@@ -1,6 +1,9 @@
 "use strict";
 
-app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService) {
+app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService, $SearchTermData) {
+
+
+    $scope.searchText = SearchTermData;
 
     //Grabs either current location or user inout city from LocationFactory
     let city = LocationFactory.getCurrentCity();
@@ -11,9 +14,10 @@ app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, D
         artists.forEach((item) => {
             DataFactory.getShows(item, city)
                 .then((response) => {
-                    var mm = response.datetime.slice(5, 7);
+                    var monthNum = response.datetime.slice(5, 7);
+                    var mm = "";
                     //converts month numbers to words
-                    switch (mm) {
+                    switch (monthNum) {
                         case "01":
                             mm = "January";
                             break;
@@ -77,8 +81,10 @@ app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, D
                         time = `${hr}:${min} AM`;
                     }
 
+
                     //removes %20 needed to represent spaces in the URL call for display purposes
                     response.name = response.name.replace(/%20/g, ' ');
+                    response.monthNum = monthNum;
                     response.date = date;
                     response.time = time;
 
