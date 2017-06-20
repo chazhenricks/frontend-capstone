@@ -30,24 +30,17 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     // }
 
     // adding a new user to firebase
-    $scope.registerUser = function() {
+      $scope.registerUser = function() {
         AuthFactory.registerWithEmail({
-                email: $scope.auth.email,
-                password: $scope.auth.password,
+            email: $scope.auth.email,
+            password: $scope.auth.password,
             })
-            .then(function(user) {
-                DataFactory.addUser({
-                        uid: user.uid,
-                        firstName: $scope.auth.firstName,
-                        lastName: $scope.auth.lastName
-                    })
-                    .then((userData) => {
-                        $scope.login();
-                        $('#registerModal').modal('close');
-                        $location.url('/spotify');
-                    }, (error) => {
-                        console.log("Error creating user:", error);
-                    });
+            .then((userData) => {
+                $scope.login();
+                $('#registerModal').modal('close');
+
+                }, (error) => {
+                console.log("Error creating user:", error);
             });
     };
 
