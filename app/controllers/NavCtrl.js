@@ -2,18 +2,12 @@
 
 app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $route) {
 
-    //When city other than current location is used, this stores that city name
-    // $scope.newLocation = {
-    //     city: ""
-    // };
-
-    // $scope.searchText = SearchTermData;
 
     //This determines if a user is logged in to trigger some ng-show elements in the navbar.html partial
     $scope.isLoggedIn = false;
 
-    $scope.searchFor = function(newArtist){
-
+    $scope.newArtist ={
+        name: ""
     };
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -38,6 +32,13 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
             }, function(error) {
                 console.log("error occured on logout");
             });
+    };
+
+    $scope.getNewArtist = function(){
+        DataFactory.getArtistsShows($scope.newArtist.name)
+        .then((response)=>{
+            $location.path("/showslist");
+        });
     };
 
     // if user enters new city this will change the city to search by in the Location Factory

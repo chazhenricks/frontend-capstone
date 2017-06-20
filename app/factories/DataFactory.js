@@ -1,37 +1,10 @@
 "use strict";
 
-app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory) {
+app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory, $rootScope) {
 
 
-
-    // Takes a users list of artist they entered and runs agains the bandsintown API and then filters by city and returns the matches
-    const getShows = function(artist, city) {
-        console.log("Current City", city);
-        artist.name = artist.name.replace(/\s/g, '%20');
-        return $q((resolve, reject) => {
-            $http.get(`https://rest.bandsintown.com/artists/${artist.name}/events?app_id=shows_around`)
-                .then((response) => {
-                    var showsArray = response.data;
-                    showsArray.forEach((show) => {
-                        if (show.venue.city === city) {
-                            artist.datetime = show.datetime;
-                            artist.city = show.venue.city;
-                            artist.state = show.venue.region;
-                            artist.venue = show.venue.name.toUpperCase();
-                            if(show.offers[0]){
-                            artist.tickets = show.offers[0].url;
-                            }
-                            artist.lat = show.venue.latitude;
-                            artist.long = show.venue.longitude;
-                            resolve(artist);
-                        }
-                    });
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        });
-    };
+    var scope = $rootScope.$new(true);
+    scope.localShows = [];
 
     // deletes show from firebase based on the id of the object stored in firebase
     const removeShow = function(showId) {
@@ -78,13 +51,223 @@ app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory
         });
     };
 
+    // Takes a users list of artist they entered and runs agains the bandsintown API and then filters by city and returns the matches
+const getShows = function(artist, city) {
+    console.log("Current City", city);
+    artist.name = artist.name.replace(/\s/g, '%20');
+    return $q((resolve, reject) => {
+        $http.get(`https://rest.bandsintown.com/artists/${artist.name}/events?app_id=shows_around`)
+            .then((response) => {
+                var showsArray = response.data;
+                showsArray.forEach((show) => {
+                    if (show.venue.city === city) {
+                        artist.datetime = show.datetime;
+                        artist.city = show.venue.city;
+                        artist.state = show.venue.region;
+                        artist.venue = show.venue.name.toUpperCase();
+                        if(show.offers[0]){
+                        artist.tickets = show.offers[0].url;
+                        }
+                        artist.lat = show.venue.latitude;
+                        artist.long = show.venue.longitude;
+                        resolve(artist);
+                    }
+                });
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+};
+
+const getSingleShow = function(artist){
+    var city = LocationFactory.getCurrentCity();
+    return new Promise((resolve,reject)=>{
+        getShows(artist, city)
+        .then((response)=>{
+            var monthNum = response.datetime.slice(5, 7);
+            var mm = "";
+            //converts month numbers to words
+            switch (monthNum) {
+                case "01":
+                    mm = "January";
+                    break;
+                case "02":
+                    mm = "February";
+                    break;
+
+                case "03":
+                    mm = "March";
+                    break;
+
+                case "04":
+                    mm = "April";
+                    break;
+
+                case "05":
+                    mm = "May";
+                    break;
+
+                case "06":
+                    mm = "June";
+                    break;
+
+                case "07":
+                    mm = "July";
+                    break;
+
+                case "08":
+                    mm = "August";
+                    break;
+
+                case "09":
+                    mm = "September";
+                    break;
+
+                case "10":
+                    mm = "October";
+                    break;
+
+                case "11":
+                    mm = "November";
+                    break;
+
+                case "12":
+                    mm = "December";
+                    break;
+            }
+
+            var dd = response.datetime.slice(8, 10);
+            var yy = response.datetime.slice(0, 4);
+            var date = `${mm} ${dd}, ${yy}`;
+
+            //Converts 24hr time to 12hr time
+            var hr = response.datetime.slice(11, 13);
+            var min = response.datetime.slice(14, 16);
+            var time = "";
+            if (hr > 12) {
+                hr = hr - 12;
+                time = `${hr}:${min} PM`;
+            } else if (hr < 13) {
+                time = `${hr}:${min} AM`;
+            }
+
+
+            //removes %20 needed to represent spaces in the URL call for display purposes
+            response.name = response.name.replace(/%20/g, ' ');
+            response.monthNum = monthNum;
+            response.date = date;
+            response.time = time;
+            scope.localShows = response;
+            resolve(response);
+        });
+    });
+};
+
+
+
+//Gets back the array of shows that match the specified city and parses the data into an object we can use to populate the page.
+    const getArtistsShows = function(artists) {
+        var localShows = [];
+        var city = LocationFactory.getCurrentCity();
+        console.log("artistShows city", city);
+        return new Promise((resolve, reject)=>{
+            artists.forEach((item) => {
+                getShows(item, city)
+                    .then((response) => {
+                        var monthNum = response.datetime.slice(5, 7);
+                        var mm = "";
+                        //converts month numbers to words
+                        switch (monthNum) {
+                            case "01":
+                                mm = "January";
+                                break;
+                            case "02":
+                                mm = "February";
+                                break;
+
+                            case "03":
+                                mm = "March";
+                                break;
+
+                            case "04":
+                                mm = "April";
+                                break;
+
+                            case "05":
+                                mm = "May";
+                                break;
+
+                            case "06":
+                                mm = "June";
+                                break;
+
+                            case "07":
+                                mm = "July";
+                                break;
+
+                            case "08":
+                                mm = "August";
+                                break;
+
+                            case "09":
+                                mm = "September";
+                                break;
+
+                            case "10":
+                                mm = "October";
+                                break;
+
+                            case "11":
+                                mm = "November";
+                                break;
+
+                            case "12":
+                                mm = "December";
+                                break;
+                        }
+
+                        var dd = response.datetime.slice(8, 10);
+                        var yy = response.datetime.slice(0, 4);
+                        var date = `${mm} ${dd}, ${yy}`;
+
+                        //Converts 24hr time to 12hr time
+                        var hr = response.datetime.slice(11, 13);
+                        var min = response.datetime.slice(14, 16);
+                        var time = "";
+                        if (hr > 12) {
+                            hr = hr - 12;
+                            time = `${hr}:${min} PM`;
+                        } else if (hr < 13) {
+                            time = `${hr}:${min} AM`;
+                        }
+
+
+                        //removes %20 needed to represent spaces in the URL call for display purposes
+                        response.name = response.name.replace(/%20/g, ' ');
+                        response.monthNum = monthNum;
+                        response.date = date;
+                        response.time = time;
+
+                        localShows.push(response);
+                        console.log("localShows", scope.localShows);
+                    }, (error) => {
+                        console.error(error);
+                    });
+            });
+            resolve(scope.localShows);
+        });
+    };
+
+
 
 
     return {
         getShows,
         addToTracked,
         getTrackedShows,
-        removeShow
+        removeShow,
+        getArtistsShows
     };
 
 });
