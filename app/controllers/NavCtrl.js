@@ -1,20 +1,20 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $route, $SearchTermData) {
+app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $route) {
 
     //When city other than current location is used, this stores that city name
-    $scope.newLocation = {
-        city: ""
-    };
+    // $scope.newLocation = {
+    //     city: ""
+    // };
 
-    $scope.searchText = SearchTermData;
+    // $scope.searchText = SearchTermData;
 
     //This determines if a user is logged in to trigger some ng-show elements in the navbar.html partial
     $scope.isLoggedIn = false;
 
     $scope.searchFor = function(newArtist){
 
-    }
+    };
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {

@@ -42,22 +42,22 @@ app.config(function($routeProvider) {
         .when('/setlocation', {
             templateUrl: 'partials/setlocation.html',
             controller: 'NavCtrl',
-            // resolve: {isAuth}
+            resolve: {isAuth}
         })
         .when('/spotify', {
             templateUrl: 'partials/spotifylogin.html',
             controller: 'AuthCtrl',
-            // resolve: {isAuth}
+            resolve: {isAuth}
         })
         .when('/showslist', {
             templateUrl: 'partials/shows-list.html',
             controller: "ShowsListCtrl",
-            // resolve: {isAuth}
+            resolve: {isAuth}
         })
         .when('/trackedshows', {
             templateUrl: 'partials/trackedshows.html',
             controller: "TrackedShowsCtrl",
-            // resolve: {isAuth}
+            resolve: {isAuth}
         })
         .otherwise('/');
 
