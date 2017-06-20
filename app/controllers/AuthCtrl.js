@@ -44,6 +44,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
                     .then((userData) => {
                         $scope.login();
                         $('#registerModal').modal('close');
+                        $location.url('/spotify');
                     }, (error) => {
                         console.log("Error creating user:", error);
                     });
