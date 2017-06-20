@@ -1,0 +1,82 @@
+<!-- <div ng-controller="NavCtrl" class="">
+    <div class="grey darken-4">
+        <div class="nav-wrapper container-fluid nav-items">
+            <a href="#!/showslist" class="brand-logo col m3">Shows Around</a>
+                <div class="input-field">
+                    <input id="artist-search" type="text" ng-model="searchString" ng-change="searchFor(searchString)">
+                    <label for="artist-search"><i class="material-icons">search</i></label>
+                </div>
+            <ul id="nav-mobile" class="right hide-on-med-and-down col m5">
+                <li><a data-target='locationModal' ng-show="isLoggedIn" modal>Location</a></li>
+                <li><a ng-href="#!/trackedshows" ng-show="isLoggedIn">Tracked Shows</a></li>
+                <li><a href="#" title="" ng-show="!isLoggedIn">Login</a></li>
+                <li><a href="#" ng-click="logout()" ng-show="isLoggedIn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+end nav -->
+
+
+
+<div ng-controller="NavCtrl">
+    <div class="grey darken-4 shows-navigation">
+        <a href="#!/showslist" class="logo">Shows Around</a>
+        <div class="input-field">
+            <input id="artist-search" type="text" ng-model="searchText" placeholder="Search For Other Artist" >
+            <a href="" ng-click="searchFor(searchString)"><i class="material-icons">search</i></a>
+        </div>
+        <ul id="" class="show-nav-links">
+            <li><a href="" data-target='locationModal' ng-if="isLoggedIn" modal>Location</a></li>
+            <li><a ng-href="#!/trackedshows" ng-if="isLoggedIn">Tracked Shows</a></li>
+            <li><a href="#" title="" ng-if="!isLoggedIn">Login</a></li>
+            <li><a href="#" ng-click="logout()" ng-if="isLoggedIn">Logout</a></li>
+        </ul>
+    </div>
+
+
+
+
+    <!-- LOCATION MODAL -->
+    <div id="locationModal" class="modal center">
+        <div class="modal-content">
+            <h4>Choose Your Location</h4>
+            <input type="text" autofocus="true" placeholder="City Name" ng-model="newLocation.city">
+            <button ng-click="newCity(); reloadPage()" class="center btn waves-effect waves-light blue">Enter City</button>
+            <p>-OR-</p>
+            <button ng-click="getCurrentLocation()" data-target="loadingModal" class="center btn waves-effect waves-light red modal-close" modal>Use Current Location</button>
+        </div>
+        <!-- end modal-content -->
+        <div class="modal-footer">
+            <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+    <!-- END LOCATION MODAL -->
+
+<!-- LOADING MODAL -->
+<div id="loadingModal" class="modal">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-image">
+              <img class="flip" src="images/van.gif">
+              <p class="card-title center">Arriving At Your City</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END LOADING MODAL -->
+
+</div><!-- End ng-controller -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
