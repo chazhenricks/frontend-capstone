@@ -1,9 +1,10 @@
 "use strict";
 
-app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService, $SearchTermData) {
+app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService) {
 
 
-    $scope.searchText = SearchTermData;
+    $scope.fontsize = "below18";
+
 
     //Grabs either current location or user inout city from LocationFactory
     let city = LocationFactory.getCurrentCity();
@@ -89,11 +90,11 @@ app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, D
                     response.time = time;
 
                     $scope.localShows.push(response);
+                    console.log("localShows", $scope.localShows);
                 }, (error) => {
                     console.error(error);
                 });
         });
-        console.log("localShows", $scope.localShows);
     };
 
 

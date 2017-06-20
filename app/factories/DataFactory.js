@@ -17,7 +17,7 @@ app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory
                             artist.datetime = show.datetime;
                             artist.city = show.venue.city;
                             artist.state = show.venue.region;
-                            artist.venue = show.venue.name;
+                            artist.venue = show.venue.name.toUpperCase();
                             if(show.offers[0]){
                             artist.tickets = show.offers[0].url;
                             }
