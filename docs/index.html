@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="ShowsAround">
+<head>
+    <title>Shows Around</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="grey lighten-5">
+
+
+<!-- NAV BAR -->
+<div ng-include="'partials/navbar.html'"></div>
+
+
+<!-- Container Div - for materialize grid layouts -->
+<div class="container-fluid">
+    <!-- NG VIEW -->
+    <!-- This will display the dynamically changing html pages  -->
+    <div ng-view></div>
+</div>
+
+
+
+<!-- TOAST -->
+<!-- This will add drop down notifications when a user has added a show to their profile -->
+<!-- <toast></toast> -->
+
+
+
+
+
+<!-- ANGULAR -->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="app/jquery-initalizers.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+<script src="app/angular-spotify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.js"></script>
+
+
+<!-- FIREBASE -->
+<script type="text/javascript" src="lib/node_modules/firebase/firebase.js"></script>
+
+<!-- APP.JS -->
+<script type="text/javascript" src="app/app.js"></script>
+
+<!-- VALUES -->
+<script type="text/javascript" src="app/values/fb-creds.js"></script>
+<script type="text/javascript" src="app/values/spotify-creds.js"></script>
+
+
+<!-- MATERIALIZE-CSS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+
+
+<!-- CONTROLLERS -->
+<script type="text/javascript" src="app/controllers/AuthCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/ShowsListCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/TrackedShowsCtrl.js"></script>
+<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
+
+<!-- FACTORIES -->
+<script type="text/javascript" src="app/factories/AuthFactory.js"></script>
+<script type="text/javascript" src="app/factories/DataFactory.js"></script>
+<script type="text/javascript" src="app/factories/LocationFactory.js"></script>
+<script type="text/javascript" src="app/factories/FilterFactory.js"></script>
+
+<!-- FILTERS -->
+
+<!-- GOOGLE MAPS API -->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-vECaPAOJpmTOrrXRp4HXnfLgDPnEhtY&callback=initMap"
+  type="text/javascript"></script> -->
+
+
+</body>
+</html>
