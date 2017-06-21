@@ -4,9 +4,30 @@ $spotify-color: #1ED760;
 $dark-grey: #424242;
 $not-white: #fafafa;
 
+
+/*************
+Spotify Login
+*************/
 .spotify{
     background-color: $spotify-color;
 }
+
+/*************
+Enter City
+*************/
+.city-name{
+    width: 25%;
+}
+
+
+
+
+
+
+
+/***************
+NAV BAR
+***************/
 
 .shows-navigation{
     // display: flex;
@@ -14,11 +35,6 @@ $not-white: #fafafa;
     justify-content: space-between;
     align-items: center;
 }
-
-/***************
-NAV BAR
-***************/
-
 
 .show-nav-links{
     display: flex;

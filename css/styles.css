@@ -1,13 +1,22 @@
+/*************
+Spotify Login
+*************/
 .spotify {
   background-color: #1ED760; }
 
-.shows-navigation {
-  justify-content: space-between;
-  align-items: center; }
+/*************
+Enter City
+*************/
+.city-name {
+  width: 25%; }
 
 /***************
 NAV BAR
 ***************/
+.shows-navigation {
+  justify-content: space-between;
+  align-items: center; }
+
 .show-nav-links {
   display: flex; }
   .show-nav-links li {

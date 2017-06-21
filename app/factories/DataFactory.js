@@ -70,6 +70,7 @@ const getShows = function(artist, city) {
                         }
                         artist.lat = show.venue.latitude;
                         artist.long = show.venue.longitude;
+                        console.log("artist from shows array", artist);
                         resolve(artist);
                     }
                 });
@@ -159,7 +160,7 @@ const getSingleShow = function(artist){
             response.date = date;
             response.time = time;
             $rootScope.localShows = [];
-            $rootScope.localShows = response;
+            $rootScope.localShows.push(response);
             resolve(response);
         });
     });
