@@ -14,9 +14,9 @@ app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, D
     let getArtistsShows = function(artists) {
         // $scope.localShows = [];
         DataFactory.getArtistsShows(artists)
-        .then((shows)=>{
-            //$scope.localShows = shows;
-        });
+            .then((shows) => {
+                //$scope.localShows = shows;
+            });
     };
 
 
