@@ -32,14 +32,14 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     // adding a new user to firebase
     $scope.registerUser = function() {
         AuthFactory.registerWithEmail({
-            email: $scope.auth.email,
-            password: $scope.auth.password,
+                email: $scope.auth.email,
+                password: $scope.auth.password,
             })
             .then((userData) => {
                 $scope.login();
                 $('#registerModal').modal('close');
 
-                }, (error) => {
+            }, (error) => {
                 console.log("Error creating user:", error);
             });
     };

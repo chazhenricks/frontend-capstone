@@ -6,7 +6,7 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
     //This determines if a user is logged in to trigger some ng-show elements in the navbar.html partial
     $scope.isLoggedIn = false;
 
-    $scope.newArtist ={
+    $scope.newArtist = {
         name: ""
     };
 
@@ -22,7 +22,7 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
         }
     });
 
-     // logout firebase
+    // logout firebase
     $scope.logout = () => {
         console.log("NO ONE IS LOGGED IN");
         AuthFactory.logout()
@@ -34,16 +34,16 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
             });
     };
 
-    $scope.getNewArtist = function(){
+    $scope.getNewArtist = function() {
         Spotify.search($scope.newArtist.name, 'artist').
-        then((response)=>{
+        then((response) => {
             console.log("Response From Spotify Search", response);
             $scope.newArtist.picture = response.data.artists.items[0].images[0].url;
         });
         DataFactory.getSingleShow($scope.newArtist)
-        .then((response)=>{
-            // $route.reload();
-        });
+            .then((response) => {
+                // $route.reload();
+            });
     };
 
     // if user enters new city this will change the city to search by in the Location Factory
@@ -66,18 +66,18 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
     // triggers the LocationFactory to get the current city - since it is a javascript method and not a promise, need to use a timeout to make sure the browser has had enough time to gather the info before sending it to the getCityByCoords function
     $scope.getCurrentLocation = function() {
         LocationFactory.getCoords()
-        .then((coords) => {
-            $scope.currentLocation = coords;
-            return LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long);
-            },
-            () => {
-                console.error("ERROR GETTING COORDINATES");
-            })
-        .then(() => {
-            $("#loadingModal").modal('close');
-            $location.url('/showslist');
-            $route.reload();
-        });
+            .then((coords) => {
+                    $scope.currentLocation = coords;
+                    return LocationFactory.getCityByCoords($scope.currentLocation.lat, $scope.currentLocation.long);
+                },
+                () => {
+                    console.error("ERROR GETTING COORDINATES");
+                })
+            .then(() => {
+                $("#loadingModal").modal('close');
+                $location.url('/showslist');
+                $route.reload();
+            });
     };
 
 });
