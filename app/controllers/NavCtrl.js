@@ -1,19 +1,13 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $route) {
+app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, LocationFactory, $timeout, $route, Spotify) {
 
-    //When city other than current location is used, this stores that city name
-    // $scope.newLocation = {
-    //     city: ""
-    // };
-
-    // $scope.searchText = SearchTermData;
 
     //This determines if a user is logged in to trigger some ng-show elements in the navbar.html partial
     $scope.isLoggedIn = false;
 
-    $scope.searchFor = function(newArtist){
-
+    $scope.newArtist ={
+        name: ""
     };
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -38,6 +32,18 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
             }, function(error) {
                 console.log("error occured on logout");
             });
+    };
+
+    $scope.getNewArtist = function(){
+        Spotify.search($scope.newArtist.name, 'artist').
+        then((response)=>{
+            console.log("Response From Spotify Search", response);
+            $scope.newArtist.picture = response.data.artists.items[0].images[0].url;
+        });
+        DataFactory.getSingleShow($scope.newArtist)
+        .then((response)=>{
+            // $route.reload();
+        });
     };
 
     // if user enters new city this will change the city to search by in the Location Factory

@@ -42,7 +42,7 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     };
 
     // returns current city
-    let getCurrentCity = function() {
+    let getCurrentCity = ()=>{
         return currentCity;
     };
 
