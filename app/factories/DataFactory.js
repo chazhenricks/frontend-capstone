@@ -3,8 +3,8 @@
 app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory, $rootScope) {
 
 
-    var scope = $rootScope.$new(true);
-    scope.localShows = [];
+
+    $rootScope.localShows = [];
 
     // deletes show from firebase based on the id of the object stored in firebase
     const removeShow = function(showId) {
@@ -53,11 +53,11 @@ app.factory("DataFactory", function($q, $http, $window, FBCreds, LocationFactory
 
     // Takes a users list of artist they entered and runs agains the bandsintown API and then filters by city and returns the matches
 const getShows = function(artist, city) {
-    console.log("Current City", city);
     artist.name = artist.name.replace(/\s/g, '%20');
     return $q((resolve, reject) => {
         $http.get(`https://rest.bandsintown.com/artists/${artist.name}/events?app_id=shows_around`)
             .then((response) => {
+                console.log("reponse from getShows", response);
                 var showsArray = response.data;
                 showsArray.forEach((show) => {
                     if (show.venue.city === city) {
@@ -158,7 +158,8 @@ const getSingleShow = function(artist){
             response.monthNum = monthNum;
             response.date = date;
             response.time = time;
-            scope.localShows = response;
+            $rootScope.localShows = [];
+            $rootScope.localShows = response;
             resolve(response);
         });
     });
@@ -172,6 +173,7 @@ const getSingleShow = function(artist){
         var city = LocationFactory.getCurrentCity();
         console.log("artistShows city", city);
         return new Promise((resolve, reject)=>{
+            $rootScope.localShows = [];
             artists.forEach((item) => {
                 getShows(item, city)
                     .then((response) => {
@@ -241,21 +243,19 @@ const getSingleShow = function(artist){
                         } else if (hr < 13) {
                             time = `${hr}:${min} AM`;
                         }
-
-
                         //removes %20 needed to represent spaces in the URL call for display purposes
                         response.name = response.name.replace(/%20/g, ' ');
                         response.monthNum = monthNum;
                         response.date = date;
                         response.time = time;
 
-                        localShows.push(response);
-                        console.log("localShows", scope.localShows);
+                        $rootScope.localShows.push(response);
+                        console.log("localShows", $rootScope.localShows);
                     }, (error) => {
                         console.error(error);
                     });
             });
-            resolve(scope.localShows);
+            resolve($rootScope.localShows);
         });
     };
 
@@ -267,7 +267,8 @@ const getSingleShow = function(artist){
         addToTracked,
         getTrackedShows,
         removeShow,
-        getArtistsShows
+        getArtistsShows,
+        getSingleShow
     };
 
 });

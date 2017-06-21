@@ -4,7 +4,7 @@ app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, D
 
 
     $scope.fontsize = "below18";
-    $scope.localShows = DataFactory.localShows;
+    // $scope.localShows = DataFactory.localShows;
 
 
     //Grabs either current location or user inout city from LocationFactory

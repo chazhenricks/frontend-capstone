@@ -35,9 +35,9 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
     };
 
     $scope.getNewArtist = function(){
-        DataFactory.getArtistsShows($scope.newArtist.name)
+        DataFactory.getSingleShow($scope.newArtist)
         .then((response)=>{
-            $location.path("/showslist");
+            $route.reload();
         });
     };
 
