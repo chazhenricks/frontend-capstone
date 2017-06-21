@@ -30,7 +30,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     // }
 
     // adding a new user to firebase
-      $scope.registerUser = function() {
+    $scope.registerUser = function() {
         AuthFactory.registerWithEmail({
             email: $scope.auth.email,
             password: $scope.auth.password,
@@ -43,6 +43,7 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
                 console.log("Error creating user:", error);
             });
     };
+
 
     // firebase login which redirects to spotify login page
     $scope.login = function() {

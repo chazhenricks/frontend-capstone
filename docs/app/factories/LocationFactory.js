@@ -29,7 +29,7 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     // runs the lat/long coordinates into the google maps api and filters out city name
     let getCityByCoords = function(lat, long) {
         return $q((resolve, reject) => {
-            $http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
+            $http.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
             .then((response) => {
                 currentCity = (response.data.results[0].address_components[3].long_name);
                 console.log("current city", currentCity);
@@ -42,7 +42,7 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     };
 
     // returns current city
-    let getCurrentCity = function() {
+    let getCurrentCity = ()=>{
         return currentCity;
     };
 
