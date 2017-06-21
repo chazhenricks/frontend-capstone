@@ -2,10 +2,8 @@
 
 app.controller("ShowsListCtrl", function($scope, LocationFactory, AuthFactory, DataFactory, Spotify, $location, localStorageService, $rootScope) {
 
-
-    $scope.fontsize = "below18";
-    // $scope.localShows = DataFactory.localShows;
-
+    //Controlls what is available in the nav bar based on if the user has logged into spotify
+    $rootScope.isSpotify = true;
 
     //Grabs either current location or user inout city from LocationFactory
     let city = LocationFactory.getCurrentCity();
