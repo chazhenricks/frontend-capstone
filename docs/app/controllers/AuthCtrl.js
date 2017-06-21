@@ -2,8 +2,9 @@
 
 //login, logout, register
 
-app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, DataFactory, Spotify) {
+app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, AuthFactory, DataFactory, Spotify) {
 
+    $rootScope.isSpotify = false;
     // scope for registering new users
     $scope.auth = {
         email: "",
@@ -25,21 +26,21 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     };
 
     // when first loaded, make sure no one is logged in
-    // if (AuthFactory.isAuthenticated()) {
-    //     logout();
-    // }
+    if (AuthFactory.isAuthenticated()) {
+            $location.url('/spotify');
+        }
 
     // adding a new user to firebase
     $scope.registerUser = function() {
         AuthFactory.registerWithEmail({
-            email: $scope.auth.email,
-            password: $scope.auth.password,
+                email: $scope.auth.email,
+                password: $scope.auth.password,
             })
             .then((userData) => {
                 $scope.login();
                 $('#registerModal').modal('close');
 
-                }, (error) => {
+            }, (error) => {
                 console.log("Error creating user:", error);
             });
     };
@@ -49,8 +50,8 @@ app.controller("AuthCtrl", function($scope, $window, $location, AuthFactory, Dat
     $scope.login = function() {
         AuthFactory.login($scope.auth)
             .then(() => {
-                $location.url('/spotify');
                 $scope.$apply();
+                $location.url('/spotify');
             });
     };
 

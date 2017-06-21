@@ -10,7 +10,7 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     // *NOTE* can only be used on localhost or site with https. If hosted on site only using http this will not fucntion
     let getCoords = function() {
         if (navigator.geolocation) {
-            return new Promise((resolve,reject)=>{
+            return new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     coords.lat = position.coords.latitude;
                     coords.long = position.coords.longitude;
@@ -29,20 +29,20 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     // runs the lat/long coordinates into the google maps api and filters out city name
     let getCityByCoords = function(lat, long) {
         return $q((resolve, reject) => {
-            $http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
-            .then((response) => {
-                currentCity = (response.data.results[0].address_components[3].long_name);
-                console.log("current city", currentCity);
-                resolve(currentCity);
-            })
-            .catch((error) => {
-                reject(error);
-            });
+            $http.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
+                .then((response) => {
+                    currentCity = (response.data.results[0].address_components[3].long_name);
+                    console.log("current city", currentCity);
+                    resolve(currentCity);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
         });
     };
 
     // returns current city
-    let getCurrentCity = ()=>{
+    let getCurrentCity = () => {
         return currentCity;
     };
 

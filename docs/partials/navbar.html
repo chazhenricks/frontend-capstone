@@ -2,15 +2,15 @@
 <div ng-controller="NavCtrl">
     <div class="grey darken-4 shows-navigation">
         <a href="#!/showslist" class="logo">Shows Around</a>
-        <div class="input-field">
+        <div ng-if="isSpotify" class="input-field">
             <input id="artist-search" type="text" ng-model="newArtist.name" placeholder="Search For Other Artist" >
             <a href="" ng-click="getNewArtist()"><i class="material-icons">search</i></a>
         </div>
         <ul id="" class="show-nav-links">
-            <li><a href="" data-target='locationModal' ng-if="isLoggedIn" modal>Location</a></li>
-            <li><a ng-href="#!/trackedshows" ng-if="isLoggedIn">Tracked Shows</a></li>
-            <li><a href="#" title="" ng-if="!isLoggedIn">Login</a></li>
-            <li><a href="#" ng-click="logout()" ng-if="isLoggedIn">Logout</a></li>
+            <li ng-if="isSpotify"><a href="" data-target='locationModal'  modal>Location</a></li>
+            <li ng-if="isSpotify"><a ng-href="#!/trackedshows" >Tracked Shows</a></li>
+            <li ng-if="!isLoggedIn"><a href="#" title="" >Login</a></li>
+            <li ng-if="isLoggedIn"><a href="#" ng-click="logout()" >Logout</a></li>
         </ul>
     </div>
 

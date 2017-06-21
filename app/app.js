@@ -5,6 +5,7 @@ var app = angular.module("ShowsAround", ["ngRoute", "LocalStorageModule", "spoti
 //initializes firebase
 app.run(function($rootScope, $location, FBCreds, AuthFactory) {
     firebase.initializeApp(FBCreds);
+    $rootScope.isSpotify = false;
 });
 
 
@@ -38,26 +39,31 @@ app.config(function($routeProvider) {
         .when('/', {
             templateUrl: 'partials/firebaselogin.html',
             controller: 'AuthCtrl'
+
         })
         .when('/setlocation', {
             templateUrl: 'partials/setlocation.html',
             controller: 'NavCtrl',
             resolve: { isAuth }
+
         })
         .when('/spotify', {
             templateUrl: 'partials/spotifylogin.html',
             controller: 'AuthCtrl',
             resolve: { isAuth }
+
         })
         .when('/showslist', {
             templateUrl: 'partials/shows-list.html',
             controller: "ShowsListCtrl",
             resolve: { isAuth }
+
         })
         .when('/trackedshows', {
             templateUrl: 'partials/trackedshows.html',
             controller: "TrackedShowsCtrl",
             resolve: { isAuth }
+
         })
         .otherwise('/');
 

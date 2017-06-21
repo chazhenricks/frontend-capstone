@@ -1,6 +1,9 @@
 "use strict";
 
-app.controller("TrackedShowsCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService) {
+app.controller("TrackedShowsCtrl", function($scope, AuthFactory, DataFactory, Spotify, $location, localStorageService, $rootScope) {
+
+    //Controlls what is available in the nav bar based on if the user has logged into spotify
+    $rootScope.isSpotify = false;
 
     // sets up a blank array to keep track of the shows in a users profile
     $scope.localShows = [];
