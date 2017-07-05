@@ -25,7 +25,12 @@ Heres as few things youll need to have installed on your system to get up and ru
     1. Visit [The Spotify Developer Website](https://developer.spotify.com/my-applications/#!/applications) and register your app with them  
     2. Once you've registered the app, make sure you register `http://localhost:8080/login.html` in the "Redirect-URIs" field inside the app or else you will get errors upon login. 
         1. Also note that if you choose to deploy this anywhere else besides your local host you will need to add that URL/path to the Spotify deloper page. So in addition to `http://localhost:8080/login.html`, you will also have `http://yourreallycoolwebsitename.com/login.html`
-    1. In the `values/spotify-creds.js` file, re-populate the `SpotifyProvider.setClientId('');` field with your own clientID provided by spotify as well as the redirect URI, if different than the local host. 
+    1. In the `values/spotify-creds.js` file, re-populate the `SpotifyProvider.setClientId('');` field with your own clientID provided by spotify as well as the redirect URI, if different than the local host.
+1. You will also need an API key and a firebase project in order to take advantage of the tracking shows feature. 
+    1. Visit the [firebase website](https://firebase.google.com/) and follow the getting started instructions. 
+    2. Once youve created a firebase project, head to the console (the url should look something like console.firebase.google.com/project/YOUR_PROJECTNAME) and click on the "Add Firebase To Your Web App" button. 1. Replace the values in the `app/values/fb-creds.js` file in this project with the values from firebase. 
+    3. 
+Thats it! You should be up and running. 
 
 
 ## Built With 
@@ -33,11 +38,14 @@ Heres as few things youll need to have installed on your system to get up and ru
 * [Matarialize-CSS](http://materializecss.com/) - CSS Framework based on the material design principals created by Google. 
 * [npm](https://www.npmjs.com/) - Javascript Package Manager. 
 
-##Awknowledgments
+## Acknowledgments
 
 * [Matt Hamil](https://github.com/matthamil/Brainify) - Large portions of dealing with Angular-Spotify were drawn from Matts capstone project. 
 * [Eddie Moore](https://github.com/eddiemoore/angular-spotify#usage) - For creating an invaluable angular module that interacts with Spotify's API and saved me many headaches. 
 * NSS Teaching staff - for finding my many missing semi-colons and typing errors. 
+
+## Issues
+If you find and bugs or issues, feel free to open up an issue on [github](https://github.com/chazhenricks/frontend-capstone/issues) or shoot me an email at chazhenricks@gmail.com. 
 
 
 
