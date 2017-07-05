@@ -4,7 +4,11 @@
 
 app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, AuthFactory, DataFactory, Spotify) {
 
+    //root scope used as a global identifier to see when the user has logged into Spotify. This will show/hide certain navbar items that are dependant on user being signed in.
     $rootScope.isSpotify = false;
+
+
+
     // scope for registering new users
     $scope.auth = {
         email: "",

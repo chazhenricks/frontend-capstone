@@ -232,6 +232,36 @@ Dynamic Font
 
 
 
+/*************
+Loading Modal
+*************/
+
+.flip{
+    transform: scaleX(-1);
+    width: 100%;
+
+}
+
+.loadingModal-text{
+    font-size: 1.2em;
+    font-weight: 100;
+}
+
+.loadingModal-content{
+    background-color: $not-white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

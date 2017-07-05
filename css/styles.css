@@ -155,4 +155,18 @@ Dynamic Font
 .above18 {
   font-size: 2em; }
 
+/*************
+Loading Modal
+*************/
+.flip {
+  transform: scaleX(-1);
+  width: 100%; }
+
+.loadingModal-text {
+  font-size: 1.2em;
+  font-weight: 100; }
+
+.loadingModal-content {
+  background-color: #fafafa; }
+
 /*# sourceMappingURL=styles.css.map */
