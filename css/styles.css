@@ -41,34 +41,6 @@ NAV BAR
   color: white; }
 
 /*****************
-MEDIA QUERIES
-******************/
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
-  .card-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 385px;
-    overflow: hidden; }
-
-  .card-content {
-    min-height: 216px; }
-
-  .card {
-    height: 624px !important; }
-
-  .shows-navigation {
-    display: flex; } }
-@media screen and (min-device-width: 990px) and (max-device-width: 1200px) {
-  .card-top {
-    height: 286px; }
-
-  .shows-navigation {
-    display: flex; } }
-@media screen and (min-device-width: 600px) and (max-device-width: 990px) {
-  .card-top {
-    height: 540px; } }
-/*****************
 CARD FORMATING
 ******************/
 .cards-list {
@@ -168,5 +140,37 @@ Loading Modal
 
 .loadingModal-content {
   background-color: #fafafa; }
+
+/*****************
+MEDIA QUERIES
+******************/
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+  .card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 385px;
+    overflow: hidden; }
+
+  .card-content {
+    min-height: 216px; }
+
+  .card {
+    height: 624px !important; }
+
+  .shows-navigation {
+    display: flex; } }
+@media screen and (min-device-width: 990px) and (max-device-width: 1200px) {
+  .card-top {
+    height: 286px; }
+
+  .shows-navigation {
+    display: flex; } }
+@media screen and (min-device-width: 600px) and (max-device-width: 990px) {
+  .card-top {
+    height: 540px; } }
+@media screen and (max-device-width 600px) {
+  .show-title {
+    font-size: 2em; } }
 
 /*# sourceMappingURL=styles.css.map */
