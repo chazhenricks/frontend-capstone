@@ -64,58 +64,6 @@ NAV BAR
     color: white;
 }
 
-/*****************
-MEDIA QUERIES
-******************/
-
-@media screen
-  and (min-device-width: 1200px)
-  and (max-device-width: 1600px)  {
-    .card-top{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 385px;
-    // position: relative;
-    overflow:hidden;
-    }
-    .card-content{
-        min-height: 216px;
-    }
-    .card{
-        height: 624px !important;
-    }
-    .shows-navigation{
-        display: flex;
-    }
-}
-
-@media screen
-  and (min-device-width: 990px)
-  and (max-device-width: 1200px)  {
-        .card-top{
-        height: 286px;
-        // position: relative;
-    }
-    .shows-navigation{
-        display: flex;
-    }
-
-}
-
-@media screen
-  and (min-device-width: 600px)
-  and (max-device-width: 990px)  {
-        .card-top{
-        height: 540px;
-        // position: relative;
-    }
-
-}
-
-@media screen and (max-device-width 600px){
-
-}
 
 /*****************
 CARD FORMATING
@@ -229,6 +177,93 @@ Dynamic Font
 .above18{
     font-size: 2em;
 }
+
+
+
+/*************
+Loading Modal
+*************/
+
+.flip{
+    transform: scaleX(-1);
+    width: 100%;
+
+}
+
+.loadingModal-text{
+    font-size: 1.2em;
+    font-weight: 100;
+}
+
+.loadingModal-content{
+    background-color: $not-white;
+}
+
+
+
+/*****************
+MEDIA QUERIES
+******************/
+
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)  {
+    .card-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 385px;
+    // position: relative;
+    overflow:hidden;
+    }
+    .card-content{
+        min-height: 216px;
+    }
+    .card{
+        height: 624px !important;
+    }
+    .shows-navigation{
+        display: flex;
+    }
+}
+
+@media screen
+  and (min-device-width: 990px)
+  and (max-device-width: 1200px)  {
+        .card-top{
+        height: 286px;
+        // position: relative;
+    }
+    .shows-navigation{
+        display: flex;
+    }
+
+}
+
+@media screen
+  and (min-device-width: 600px)
+  and (max-device-width: 990px)  {
+        .card-top{
+        height: 540px;
+        // position: relative;
+    }
+
+}
+
+@media screen and (max-device-width 600px){
+    .show-title{
+        font-size: 2em;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 

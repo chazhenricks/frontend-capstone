@@ -6,10 +6,15 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
     //This determines if a user is logged in to trigger some ng-show elements in the navbar.html partial
     $scope.isLoggedIn = false;
 
+
+
+    //This scope item is linked to the "New Artist" search
     $scope.newArtist = {
         name: ""
     };
 
+
+    //Updates the isLoggedIn variable on firebase login state changes.
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             $scope.isLoggedIn = true;
@@ -34,6 +39,8 @@ app.controller("NavCtrl", function($scope, $location, AuthFactory, DataFactory, 
             });
     };
 
+
+    //This function will get info from Spotify for a new artist the user is searching for that is not in their top 50
     $scope.getNewArtist = function() {
         Spotify.search($scope.newArtist.name, 'artist').
         then((response) => {

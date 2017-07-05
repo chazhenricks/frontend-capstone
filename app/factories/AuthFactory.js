@@ -2,10 +2,6 @@
 
 app.factory("AuthFactory", function($q, $http, $rootScope, FBCreds) {
 
-    // **********
-    // FIREBASE
-    // **********
-
     // initially sets user data to null when there are no users
     let currentUserData = null;
 
