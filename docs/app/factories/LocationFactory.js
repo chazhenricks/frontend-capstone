@@ -6,7 +6,7 @@ app.factory("LocationFactory", function($timeout, $q, $http) {
     var coords = {};
     var currentCity = "";
 
-    // uses javascript location methods to get coordinates of users current location
+    // uses javascript location method to get coordinates of users current location
     // *NOTE* can only be used on localhost or site with https. If hosted on site only using http this will not fucntion
     let getCoords = function() {
         if (navigator.geolocation) {
