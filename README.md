@@ -1,6 +1,6 @@
 # Shows Around
 
-Shows around is a web app that utilizes the Spotify and Ticketmaster APIs to provide a user with information of when their favorite artists are coming to their town. 
+Shows around is a web app that utilizes the Spotify and BandsInTown APIs to provide a user with information of when their favorite artists are coming to their town. 
 
 The app will allow you to log into your Spotify account, which it will then retreive a list of your most played artists. It will then take that list and run it through Ticketmaster's database of events, filter those events by city and provide you with a list of when and where your favorite bands are playing shows around you. 
 
