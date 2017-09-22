@@ -202,5 +202,24 @@ Dynamic Font
     font-size: 2em;
 }
 
+/*************
+Loading Modal
+*************/
+.flip {
+    transform: scaleX(-1);
+    width: 100%;
+    height: 100%; }
+  
+  .loadingModal-text {
+    font-size: 2em;
+    font-weight: 100;
+    margin-top: 0; }
+  
+  .loadingModal-content {
+    position: relative;
+    background-color: #fafafa;
+    width: 100%;
+    overflow: hidden; }
+
 
 /*# sourceMappingURL=styles.css.map */
