@@ -2,7 +2,7 @@
 
 //login, logout, register
 
-app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, AuthFactory, DataFactory, Spotify) {
+app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, AuthFactory, DataFactory, Spotify, $route) {
 
     $rootScope.isSpotify = false;
     // scope for registering new users
@@ -50,7 +50,7 @@ app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, Auth
     $scope.login = function() {
         AuthFactory.login($scope.auth)
             .then(() => {
-                $scope.$apply();
+                //$scope.$apply();
                 $location.path("/spotify");
                 $route.reload();
             });
