@@ -54,8 +54,8 @@ app.controller("AuthCtrl", function($scope, $window, $rootScope, $location, Auth
     $scope.login = function() {
         AuthFactory.login($scope.auth)
             .then(() => {
-                $scope.$apply();
-                $location.url('/spotify');
+                //$scope.$apply();
+                $location.path("/spotify");
                 $route.reload();
             });
     };
